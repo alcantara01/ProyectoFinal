@@ -1,20 +1,22 @@
-import { useState } from "react";
-import { useFetch } from "../hooks/useFetch";
+import { useState, useContext } from "react";
+import { DataContext } from "./DataContext";
 
 const BuscaPersonaje = () => {
 const [name, setName] = useState("");
+const {setQuery, error} = useContext(DataContext);
 
-const {data} = useFetch("=Mickey%20Mouse");
+//const {data} = useFetch("=Mickey%20Mouse");
 
 const handleSubmit = e => {
   e.preventDefault();
-  console.log("name:", name);
+  setQuery(name);
+  //console.log("name:", name);
 }
 
     return (
       <div className="busca-personaje">
         <h1>Buscador de Personajes Disney</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={ handleSubmit }>
           <input type="text" placeholder="Inserta el nombre.." onChange={e => setName(e.target.value)}/>
           <input type="submit" value="Buscar" />
         </form>
