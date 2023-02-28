@@ -1,7 +1,11 @@
 import { useState } from "react";
+import { useFetch } from "../hooks/useFetch";
 
 const BuscaPersonaje = () => {
 const [name, setName] = useState("");
+
+const {data} = useFetch("=Mickey%20Mouse");
+
 const handleSubmit = e => {
   e.preventDefault();
   console.log("name:", name);
